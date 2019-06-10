@@ -101,7 +101,7 @@ function framePreviewPlugin(options) {
       seekBar.appendChild(paddingDiv);
     }
 
-    function getParents(node: any): any[] {
+    function getParents(node) {
       let aNode = node.parentNode;
        const parents = [];
        while (aNode) {
@@ -135,7 +135,7 @@ function framePreviewPlugin(options) {
     }
 }
 
-export function createFramePreviewPlugin() {
+function createFramePreviewPlugin() {
   if (!('amp' in window)) {
     throw new Error('Azure Media Player not found!');
   }
@@ -143,3 +143,5 @@ export function createFramePreviewPlugin() {
   // Register Plugin on AMP
   window.amp.plugin('framePreview', framePreviewPlugin);
 }
+
+window['createFramePreviewPlugin'] = createFramePreviewPlugin;

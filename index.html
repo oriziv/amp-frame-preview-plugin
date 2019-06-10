@@ -1,11 +1,102 @@
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <link type="text/css" rel="stylesheet" href="//amp.azure.net/libs/amp/2.3.0/skins/amp-flush/azuremediaplayer.min.css" />
-        <script type="text/javascript" src="//amp.azure.net/libs/amp/2.3.0/azuremediaplayer.min.js"></script>
+        <title>Frame Peview plugin</title>
+        <link type="text/css" rel="stylesheet" href="https://amp.azure.net/libs/amp/2.3.0/skins/amp-flush/azuremediaplayer.min.css" />
+        <script type="text/javascript" src="https://amp.azure.net/libs/amp/2.3.0/azuremediaplayer.min.js"></script>
+        <script type="text/javascript" src="amp-framePreview.plugin.ts"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     </head>
     <body>
-        <video width="640" height="360" id="mediaPlayer" class="azuremediaplayer amp-flush-skin" controls autoplay />
+        <video id="mediaPlayer" width="640" height="360" class="azuremediaplayer amp-flush-skin" controls autoplay />
     </body>
+    <script type="text/javascript">
+            
+        (function(){
+         // Register Plugin on AMP
+         window.amp.plugin('framePreview', framePreviewPlugin);
+        
+         // Create keyframes array
+          const keyframes = [
+        {startSeconds: 0, endSeconds: 0, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 0, yPosition: 0},
+        {startSeconds: 0, endSeconds: 1, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 160, yPosition: 0},
+        {startSeconds: 1, endSeconds: 2, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 320, yPosition: 0},
+        {startSeconds: 2, endSeconds: 3, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 480, yPosition: 0},
+        {startSeconds: 3, endSeconds: 5, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 640, yPosition: 0},
+        {startSeconds: 5, endSeconds: 6, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 800, yPosition: 0},
+        {startSeconds: 6, endSeconds: 6, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 960, yPosition: 0},
+        {startSeconds: 6, endSeconds: 18, url:  "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 1120, yPosition: 0},
+        {startSeconds: 18, endSeconds: 27, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 1280, yPosition: 0},
+        {startSeconds: 27, endSeconds: 30, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 1440, yPosition: 0},
+        {startSeconds: 30, endSeconds: 31, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 1600, yPosition: 0},
+        {startSeconds: 31, endSeconds: 34, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 1760, yPosition: 0},
+        {startSeconds: 34, endSeconds: 37, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 1920, yPosition: 0},
+        {startSeconds: 37, endSeconds: 39, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 2080, yPosition: 0},
+        {startSeconds: 39, endSeconds: 44, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 2240, yPosition: 0},
+        {startSeconds: 44, endSeconds: 64, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 2400, yPosition: 0},
+        {startSeconds: 64, endSeconds: 67, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 2560, yPosition: 0},
+        {startSeconds: 67, endSeconds: 72, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 2720, yPosition: 0},
+        {startSeconds: 72, endSeconds: 77, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 2880, yPosition: 0},
+        {startSeconds: 77, endSeconds: 81, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 3040, yPosition: 0},
+        {startSeconds: 81, endSeconds: 85, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 3200, yPosition: 0},
+        {startSeconds: 85, endSeconds: 100, url:  "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 3360, yPosition: 0},
+        {startSeconds: 100, endSeconds: 107, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 3520, yPosition: 0},
+        {startSeconds: 107, endSeconds: 108, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 3680, yPosition: 0},
+        {startSeconds: 108, endSeconds: 109, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 3840, yPosition: 0},
+        {startSeconds: 109, endSeconds: 119, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 4000, yPosition: 0},
+        {startSeconds: 119, endSeconds: 132, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 4160, yPosition: 0},
+        {startSeconds: 132, endSeconds: 138, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 4320, yPosition: 0},
+        {startSeconds: 138, endSeconds: 149, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 4480, yPosition: 0},
+        {startSeconds: 149, endSeconds: 159, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 4640, yPosition: 0},
+        {startSeconds: 159, endSeconds: 160, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 4800, yPosition: 0},
+        {startSeconds: 160, endSeconds: 162, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 4960, yPosition: 0},
+        {startSeconds: 162, endSeconds: 164, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 5120, yPosition: 0},
+        {startSeconds: 164, endSeconds: 172, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 5280, yPosition: 0},
+        {startSeconds: 172, endSeconds: 175, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 5440, yPosition: 0},
+        {startSeconds: 175, endSeconds: 181, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 5600, yPosition: 0},
+        {startSeconds: 181, endSeconds: 182, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 5760, yPosition: 0},
+        {startSeconds: 182, endSeconds: 188, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 5920, yPosition: 0},
+        {startSeconds: 188, endSeconds: 190, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 6080, yPosition: 0},
+        {startSeconds: 190, endSeconds: 196, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 6240, yPosition: 0},
+        {startSeconds: 196, endSeconds: 199, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 6400, yPosition: 0},
+        {startSeconds: 199, endSeconds: 202, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 6560, yPosition: 0},
+        {startSeconds: 202, endSeconds: 205, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 6720, yPosition: 0},
+        {startSeconds: 205, endSeconds: 210, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 6880, yPosition: 0},
+        {startSeconds: 210, endSeconds: 214, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 7040, yPosition: 0},
+        {startSeconds: 214, endSeconds: 217, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 7200, yPosition: 0},
+        {startSeconds: 217, endSeconds: 222, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 7360, yPosition: 0},
+        {startSeconds: 222, endSeconds: 226, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 7520, yPosition: 0},
+        {startSeconds: 226, endSeconds: 235, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 7680, yPosition: 0},
+        {startSeconds: 235, endSeconds: 238, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/0/", xPosition: 7840, yPosition: 0},
+        {startSeconds: 238, endSeconds: 241, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/1/", xPosition: 0, yPosition: 0},
+        {startSeconds: 241, endSeconds: 244, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/1/", xPosition: 160, yPosition: 0},
+        {startSeconds: 244, endSeconds: 252, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/1/", xPosition: 320, yPosition: 0},
+        {startSeconds: 252, endSeconds: 257, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/1/", xPosition: 480, yPosition: 0},
+        {startSeconds: 257, endSeconds: 257, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/1/", xPosition: 640, yPosition: 0},
+        {startSeconds: 257, endSeconds: undefined, url: "https://www.videoindexer.ai/api/v2/accounts/00000000-0000-0000-0000-000000000000/videos/4452cf7e59/thumbnails/KeyframesSprite/1/", xPosition: 800, yPosition: 0}
+          ];
+          
+          var mediaPlayer = amp("mediaPlayer", {
+                            plugins: {
+                                framePreview: {
+                                    keyframes: keyframes,
+                                    width: 160,
+                                    height: 90,
+                                    top: -97
+                                }
+                            }
+                        });
+                        mediaPlayer.src(
+                            [{
+                                src: "https://rodmandev.streaming.mediaservices.windows.net:443/1d56ad1a-4f57-49fe-8039-c789bb22bf87/8dc9a1df-8d5a-4f8f-ac5e-7da8aaa4.ism/manifest(encryption=cbc)",
+                               protectionInfo: [{
+                                                type: "AES",
+                                                authenticationToken: "Bearer=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiI0Mzc1N2NhMC05MjMzLTRjZTYtOGU4OC03NjEwNzVhMjQxZDAiLCJpc3MiOiJodHRwczovL2JyZWFrZG93bi5tZSIsImF1ZCI6IkJyZWFrZG93blVzZXIiLCJleHAiOjE1NjAyNjA3NzgsIm5iZiI6MTU2MDE3NDMxOH0.U7iPehh91n9vYJK2FN06uGMVLR_hA8X_AqZH4Axndks"
+            }]    
+                            }]
+                        );
+        }())
+                </script>
 </html>
